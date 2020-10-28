@@ -4,7 +4,7 @@
 ### for a complete list of Dockerfiles for each tag/variant of this image
 ###
 
-FROM elixir:1.10.4
+FROM hexpm/elixir:1.11.1-erlang-23.1.1-ubuntu-groovy-20201022.1
 
 # make Apt non-interactive
 RUN echo 'APT::Get::Assume-Yes "true";' > /etc/apt/apt.conf.d/90circleci \
@@ -30,10 +30,65 @@ RUN echo 'PATH="$HOME/.local/bin:$PATH"' >> /etc/profile.d/user-local-path.sh
 # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=863199
 RUN apt-get update \
   && mkdir -p /usr/share/man/man1 \
-  && apt-get install -y \
-    git mercurial xvfb apt \
-    locales sudo openssh-client ca-certificates tar gzip parallel \
-    net-tools netcat unzip zip bzip2 gnupg curl wget make
+  && apt-get install -y --no-install-recommends \
+    apt \
+    autoconf \
+    automake \
+    bzip2 \
+    ca-certificates \
+    curl \
+    dpkg-dev \
+    file \
+    g++ \
+    gcc \
+    git \
+    gnupg \
+    gzip \
+    imagemagick \
+    libbz2-dev \
+    libc6-dev \
+    libcurl4-openssl-dev \
+    libdb-dev \
+    libevent-dev \
+    libffi-dev \
+    libgdbm-dev \
+    libglib2.0-dev \
+    libgmp-dev \
+    libjpeg-dev \
+    libkrb5-dev \
+    liblzma-dev \
+    libmagickcore-dev \
+    libmagickwand-dev \
+    libmaxminddb-dev \
+    libncurses5-dev \
+    libncursesw5-dev \
+    libpng-dev \
+    libpq-dev \
+    libreadline-dev \
+    libsqlite3-dev \
+    libssl-dev \
+    libtool \
+    libwebp-dev \
+    libxml2-dev \
+    libxslt-dev \
+    libyaml-dev \
+    locales \
+    make \
+    mercurial \
+    net-tools \
+    netcat \
+    openssh-client \
+    parallel \
+    patch \
+    sudo \
+    tar \
+    unzip \
+    wget \
+    xvfb \
+    xz-utils \
+    zip \
+    zlib1g-dev \
+  && rm -rf /var/lib/apt/lists/*
 
 
 # Set timezone to UTC by default
